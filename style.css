@@ -1,0 +1,152 @@
+:root {
+  color-scheme: light;
+  --ink: #352f31;
+  --muted: #8b7f7e;
+  --rose: #b45d68;
+  --paper: #fffdfa;
+  --line: #eadfda;
+}
+
+* { box-sizing: border-box; }
+
+html { min-height: 100%; background: #f8f4ef; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "Noto Sans Devanagari", "DM Sans", sans-serif;
+  background:
+    radial-gradient(ellipse at 12% 12%, rgba(223, 182, 166, .24), transparent 33rem),
+    radial-gradient(ellipse at 90% 88%, rgba(201, 160, 170, .18), transparent 29rem),
+    #f8f4ef;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 56px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.letter {
+  width: min(100%, 690px);
+  padding: clamp(34px, 7vw, 68px) clamp(26px, 8vw, 76px) 44px;
+  background: var(--paper);
+  border: 1px solid rgba(150, 115, 105, .14);
+  border-radius: 4px;
+  box-shadow: 0 24px 70px rgba(79, 53, 49, .10), 0 3px 10px rgba(79, 53, 49, .04);
+  position: relative;
+  animation: arrive .8s ease-out both;
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border: 1px solid rgba(180, 93, 104, .13);
+  pointer-events: none;
+}
+
+.topline, .eyebrow, .footer-note, .corner-note, .signoff-label {
+  font-family: "DM Sans", "Noto Sans Devanagari", sans-serif;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: var(--rose);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.sparkle { font-size: 16px; }
+
+.eyebrow {
+  margin: 42px 0 4px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .14em;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(43px, 8vw, 58px);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -.055em;
+}
+
+.comma { color: var(--rose); }
+
+.rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  margin: 23px auto 35px;
+  color: var(--rose);
+}
+
+.rule span { width: 46px; height: 1px; background: var(--line); }
+.rule i { font-size: 11px; font-style: normal; }
+
+.message { font-size: 16px; line-height: 1.95; }
+.message p { margin: 0 0 17px; }
+
+.signoff {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 30px;
+  padding-right: 4px;
+}
+
+.signoff-label { font-size: 12px; color: var(--muted); }
+.signature { margin-top: 4px; color: var(--rose); font-size: 25px; font-weight: 600; }
+
+.footer-note {
+  margin: 33px 0 0;
+  padding-top: 17px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .025em;
+}
+
+.corner-note {
+  position: absolute;
+  right: max(24px, calc((100vw - 690px) / 2));
+  bottom: 22px;
+  color: #9b8e8a;
+  font-size: 11px;
+  letter-spacing: .08em;
+}
+
+.corner-note span { color: var(--rose); font-size: 15px; vertical-align: -1px; }
+
+@keyframes arrive {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  .page-shell { padding: 26px 14px 58px; }
+  .letter { padding: 39px 27px 34px; }
+  .eyebrow { margin-top: 34px; }
+  .message { font-size: 15px; line-height: 1.9; }
+  .corner-note { right: 22px; bottom: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
